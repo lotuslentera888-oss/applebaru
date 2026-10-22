@@ -15,3 +15,11 @@ File unsigned harus ditandatangani lewat alur signing Apple atau alat sideload y
 Workflow ini tidak melakukan login Apple, tidak menghasilkan provisioning profile, tidak mendaftarkan perangkat, dan tidak memanjangkan masa berlaku aplikasi. Signing valid, izin perangkat, dan masa berlaku aktual tetap perlu diperiksa setelah proses sideload. Distribusi melalui TestFlight atau App Store memerlukan alur Apple yang berbeda; workflow unsigned ini bukan upload ke layanan tersebut.
 
 Mengunggah proyek ke GitHub juga tidak menerbitkan backend FastAPI/MongoDB. URL backend lama tetap dipertahankan; login pertama memerlukan backend HTTPS yang aktif.
+
+## Build yang berhasil
+
+Source publik: https://github.com/lotuslentera888-oss/applebaru
+
+Run sukses: https://github.com/lotuslentera888-oss/applebaru/actions/runs/39857097030
+
+Commit source: `734a09f1d531c40591654f28fe846f81140f52c5`. Kedua job native selesai sukses. Signing Apple dan uji iPhone fisik tidak dilakukan.
