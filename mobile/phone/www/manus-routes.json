@@ -1,0 +1,151 @@
+{
+  "routes": [
+    {
+      "path": "/"
+    },
+    {
+      "path": "/apps"
+    },
+    {
+      "path": "/settings"
+    },
+    {
+      "path": "/general"
+    },
+    {
+      "path": "/about"
+    },
+    {
+      "path": "/wifi"
+    },
+    {
+      "path": "/bluetooth"
+    },
+    {
+      "path": "/edit"
+    },
+    {
+      "path": "/phone"
+    },
+    {
+      "path": "/admin"
+    },
+    {
+      "path": "/settings/cellular"
+    },
+    {
+      "path": "/settings/hotspot"
+    },
+    {
+      "path": "/settings/vpn"
+    },
+    {
+      "path": "/settings/notifications"
+    },
+    {
+      "path": "/settings/sounds"
+    },
+    {
+      "path": "/settings/focus"
+    },
+    {
+      "path": "/settings/screen-time"
+    },
+    {
+      "path": "/settings/control-center"
+    },
+    {
+      "path": "/settings/display"
+    },
+    {
+      "path": "/settings/home-screen"
+    },
+    {
+      "path": "/settings/wallpaper"
+    },
+    {
+      "path": "/settings/accessibility"
+    },
+    {
+      "path": "/settings/action-button"
+    },
+    {
+      "path": "/settings/apple-intelligence"
+    },
+    {
+      "path": "/settings/camera"
+    },
+    {
+      "path": "/settings/face-id"
+    },
+    {
+      "path": "/settings/emergency-sos"
+    },
+    {
+      "path": "/settings/privacy"
+    },
+    {
+      "path": "/settings/battery"
+    },
+    {
+      "path": "/settings/apps"
+    },
+    {
+      "path": "/settings/app-store"
+    },
+    {
+      "path": "/settings/passwords"
+    },
+    {
+      "path": "/settings/music"
+    },
+    {
+      "path": "/general/software-update"
+    },
+    {
+      "path": "/general/airdrop"
+    },
+    {
+      "path": "/general/airplay"
+    },
+    {
+      "path": "/general/picture"
+    },
+    {
+      "path": "/general/carplay"
+    },
+    {
+      "path": "/general/storage"
+    },
+    {
+      "path": "/general/background-refresh"
+    },
+    {
+      "path": "/general/date-time"
+    },
+    {
+      "path": "/general/keyboard"
+    },
+    {
+      "path": "/general/fonts"
+    },
+    {
+      "path": "/general/language-region"
+    },
+    {
+      "path": "/general/dictionary"
+    },
+    {
+      "path": "/general/vpn-management"
+    },
+    {
+      "path": "/general/legal"
+    },
+    {
+      "path": "/general/transfer-reset"
+    },
+    {
+      "path": "/general/shutdown"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+name: Build iOS IPA (unsigned)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'mobile/**'
+      - '.github/workflows/ios-ipa.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-ipa-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: IPA ${{ matrix.app }}
+    runs-on: macos-15
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [settings, phone]
+    steps:
+      - name: Checkout revision
+        uses: actions/checkout@v4
+
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: mobile/${{ matrix.app }}/package-lock.json
+
+      - name: Select installed Xcode 26 or newer
+        shell: bash
+        run: |
+          SELECTED=$(python3 - <<'PY'
+          from pathlib import Path
+          import re
+          choices = []
+          for path in Path('/Applications').glob('Xcode_*.app'):
+              match = re.match(r'Xcode_(\d+)(?:\.(\d+))?(?:\.(\d+))?\.app$', path.name)
+              if match:
+                  version = tuple(int(value or 0) for value in match.groups())
+                  if version[0] >= 26:
+                      choices.append((version, str(path / 'Contents/Developer')))
+          print(max(choices)[1] if choices else '')
+          PY
+          )
+          if [ -n "$SELECTED" ]; then sudo xcode-select -s "$SELECTED"; fi
+          xcodebuild -version
+          python3 - <<'PY'
+          import re, subprocess
+          version = subprocess.check_output(['xcodebuild', '-version'], text=True)
+          major = int(re.search(r'Xcode (\d+)', version).group(1))
+          if major < 26:
+              raise SystemExit('Capacitor 8 needs Xcode 26+. Choose a runner with it installed.')
+          PY
+
+      - name: Restore native wrapper dependencies
+        working-directory: mobile/${{ matrix.app }}
+        run: npm ci --no-audit --no-fund
+
+      - name: Compile native iPhone app and package unsigned IPA
+        env:
+          APP_MODE: ${{ matrix.app }}
+        run: bash mobile/build-unsigned-ipa.sh "$APP_MODE" "$RUNNER_TEMP/ipa-output"
+
+      - name: Upload IPA, checksum and signing notice
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.app }}-unsigned-ipa
+          path: |
+            ${{ runner.temp }}/ipa-output/*.ipa
+            ${{ runner.temp }}/ipa-output/*.sha256
+            ${{ runner.temp }}/ipa-output/*SIGNING-NOTICE.txt
+            ${{ runner.temp }}/ipa-output/*executable.txt
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.app }}-xcode-logs
+          path: ${{ runner.temp }}/ipa-output/*xcodebuild.log
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Summary
+        if: success()
+        env:
+          APP_MODE: ${{ matrix.app }}
+        run: |
+          {
+            echo "## $APP_MODE IPA"
+            echo "Native iPhone IPA built successfully."
+            echo "**Unsigned — must be signed before installation on iPhone.**"
+            echo "Download the IPA artifact from this workflow run."
+          } >> "$GITHUB_STEP_SUMMARY"

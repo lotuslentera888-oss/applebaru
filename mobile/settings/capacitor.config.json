@@ -1,0 +1,9 @@
+{
+  "appId": "com.iphonesim.settings",
+  "appName": "Settings",
+  "webDir": "www",
+  "ios": {
+    "backgroundColor": "#F2F2F7",
+    "scrollEnabled": true
+  }
+}

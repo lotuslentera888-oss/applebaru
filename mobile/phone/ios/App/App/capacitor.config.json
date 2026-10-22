@@ -1,0 +1,14 @@
+{
+	"appId": "com.iphonesim.phone",
+	"appName": "Phone",
+	"webDir": "www",
+	"ios": {
+		"backgroundColor": "#FFFFFF",
+		"scrollEnabled": true
+	},
+	"packageClassList": [
+		"AppPlugin",
+		"StatusBarPlugin",
+		"SplashScreenPlugin"
+	]
+}
