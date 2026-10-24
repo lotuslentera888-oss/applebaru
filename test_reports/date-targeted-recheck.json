@@ -1,0 +1,42 @@
+[
+  {
+    "engine": "chromium",
+    "width": 320,
+    "full_date_kept_together": true
+  },
+  {
+    "engine": "chromium",
+    "width": 375,
+    "full_date_kept_together": true
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "full_date_kept_together": true
+  },
+  {
+    "engine": "chromium",
+    "width": 430,
+    "full_date_kept_together": true
+  },
+  {
+    "engine": "webkit",
+    "width": 320,
+    "full_date_kept_together": true
+  },
+  {
+    "engine": "webkit",
+    "width": 375,
+    "full_date_kept_together": true
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "full_date_kept_together": true
+  },
+  {
+    "engine": "webkit",
+    "width": 430,
+    "full_date_kept_together": true
+  }
+]

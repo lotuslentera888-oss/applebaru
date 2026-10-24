@@ -3,7 +3,21 @@
   "appName": "Settings",
   "webDir": "www",
   "ios": {
-    "backgroundColor": "#F2F2F7",
-    "scrollEnabled": true
+    "backgroundColor": "#FFFFFF",
+    "scrollEnabled": true,
+    "contentInset": "never",
+    "preferredContentMode": "mobile"
+  },
+  "backgroundColor": "#FFFFFF",
+  "plugins": {
+    "StatusBar": {
+      "overlaysWebView": true,
+      "style": "LIGHT",
+      "backgroundColor": "#FFFFFF"
+    },
+    "SplashScreen": {
+      "launchShowDuration": 0,
+      "backgroundColor": "#FFFFFF"
+    }
   }
 }

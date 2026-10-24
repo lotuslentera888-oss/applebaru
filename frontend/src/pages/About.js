@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { NavHeader } from "@/components/ios/Chrome";
 import { IosGroup, IosInfoRow, IosSectionFooter } from "@/components/ios/IosList";
 import OfflineBanner from "@/components/ios/OfflineBanner";
@@ -7,6 +7,8 @@ import { useDevice } from "@/context/DeviceContext";
 
 export default function About() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const backPath = location.state?.from === "/account" ? "/account" : "/general";
   const { device: d, refreshDevice, isOffline } = useDevice();
 
   useEffect(() => {
@@ -15,7 +17,7 @@ export default function About() {
 
   return (
     <div className="pb-10" data-testid="about-page">
-      <NavHeader title="About" largeTitle="About" onBack={() => navigate("/general")} backLabel="General" />
+      <NavHeader title="About" onBack={() => navigate(backPath)} backLabel={backPath === "/account" ? "Apple Account" : "General"} />
 
       <OfflineBanner />
 
@@ -28,14 +30,19 @@ export default function About() {
       )}
 
       {d && (
-        <div className="space-y-6 pt-1">
+        <div className="space-y-5 pt-4">
           <IosGroup>
             <IosInfoRow label="Name" value={d.device_name} testId="about-name" />
-            <IosInfoRow label="Software Version" value={`iOS ${d.ios_version} (${d.build_version})`} testId="about-ios" />
+            <IosInfoRow label="iOS Version" value={d.ios_version} testId="about-ios" />
             <IosInfoRow label="Model Name" value={d.model_name} testId="about-model-name" />
-            <IosInfoRow label="Model Number" value={d.model_number} testId="about-model-number" />
+            <IosInfoRow label="Model Number" value={d.model_number} mono testId="about-model-number" />
+            <IosInfoRow label="Serial Number" value={d.serial_number} mono testId="about-serial" />
+          </IosGroup>
+
+          <IosGroup>
             <IosInfoRow label="Part Number" value={d.part_number} testId="about-part-number" />
             <IosInfoRow label="Color" value={d.color} testId="about-color" />
+            <IosInfoRow label="Build Version" value={d.build_version} mono testId="about-build" />
           </IosGroup>
 
           <IosGroup>
@@ -62,7 +69,6 @@ export default function About() {
           </IosGroup>
 
           <IosGroup>
-            <IosInfoRow label="Serial Number" value={d.serial_number} mono testId="about-serial" />
             <IosInfoRow label="IMEI" value={d.imei} mono testId="about-imei" />
             <IosInfoRow label="IMEI2" value={d.imei2} mono testId="about-imei2" />
             <IosInfoRow label="MEID" value={d.meid} mono testId="about-meid" />

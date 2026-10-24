@@ -8,6 +8,8 @@ export const useIosBack = () => useContext(BackContext);
 function parentPath(path) {
   if (["/general", "/wifi", "/bluetooth", "/edit"].includes(path)) return "/settings";
   if (path === "/about") return "/general";
+  if (path === "/account") return "/settings";
+  if (path.startsWith("/account/")) return "/account";
   if (path.startsWith("/settings/") || path.startsWith("/general/")) {
     const parts = path.split("/");
     if (parts.length > 3) return parts.slice(0, -1).join("/");
@@ -41,7 +43,8 @@ export default function AnimatedOutlet() {
     nextDirection.current = -1;
     callback();
   };
-  const fallback = parentPath(location.pathname);
+  const accountOrigin = ["/about", "/edit"].includes(location.pathname) && location.state?.from === "/account";
+  const fallback = accountOrigin ? "/account" : parentPath(location.pathname);
   const variants = {
     enter: (d) => ({ x: reducedMotion ? 0 : d > 0 ? "100%" : "-28%", opacity: 1 }),
     active: { x: 0, opacity: 1 },

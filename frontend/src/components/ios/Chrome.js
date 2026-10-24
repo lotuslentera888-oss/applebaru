@@ -16,22 +16,25 @@ export function StatusBar() {
 
 export function NavHeader({ title, largeTitle, onBack, backLabel = "Settings", right }) {
   const back = useIosBack();
+  // Detail pages use the compact centered title shown in the client's reference.
+  const useLargeTitle = largeTitle === "Settings" && !onBack;
+  const heading = title || largeTitle;
   return (
-    <header className="ios-nav-header sticky top-0 z-40">
-      <div className="h-[54px] flex items-center px-4 relative gap-2">
+    <header className={`ios-nav-header sticky top-0 z-40 ${useLargeTitle ? "ios-nav-header-large" : ""}`}>
+      <div className="ios-nav-toolbar flex items-center px-4 relative gap-2">
         {onBack ? (
-          <button data-testid="ios-back-button" aria-label={`Back to ${backLabel}`}
+          <button type="button" data-testid="ios-back-button" aria-label={`Back to ${backLabel}`}
             onClick={() => back(onBack)} className="ios-glass-back shrink-0" title={backLabel}>
-            <ChevronLeft size={25} strokeWidth={2.4} />
+            <ChevronLeft size={23} strokeWidth={2.3} />
           </button>
-        ) : <div className="w-10" />}
-        {title && !largeTitle && (
-          <span className="absolute left-1/2 -translate-x-1/2 text-[17px] font-semibold text-black max-w-[55%] truncate">{title}</span>
+        ) : <div className="w-9" />}
+        {heading && !useLargeTitle && (
+          <h1 data-testid="ios-compact-title" className="absolute left-1/2 -translate-x-1/2 text-[17px] leading-[22px] font-semibold text-black max-w-[55%] truncate">{heading}</h1>
         )}
-        <div className="ml-auto">{right}</div>
+        <div className="ml-auto relative z-10">{right}</div>
       </div>
-      {largeTitle && (
-        <div className="px-5 pb-3 pt-0.5">
+      {useLargeTitle && (
+        <div className="px-5 pb-2 pt-0">
           <h1 className="text-[34px] leading-[41px] font-bold tracking-tight text-black">{largeTitle}</h1>
         </div>
       )}

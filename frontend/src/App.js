@@ -12,6 +12,8 @@ import Settings from "@/pages/Settings";
 import General from "@/pages/General";
 import About from "@/pages/About";
 import SettingsDetail from "@/pages/SettingsDetail";
+import AppleAccount from "@/pages/AppleAccount";
+import AppleAccountDetail from "@/pages/AppleAccountDetail";
 import AnimatedOutlet from "@/components/ios/Navigation";
 import Wifi from "@/pages/Wifi";
 import Bluetooth from "@/pages/Bluetooth";
@@ -24,7 +26,7 @@ function IosFrame() {
   // Native (Capacitor) or a single-purpose app build -> fullscreen, no desktop frame.
   if (isNative || !isFullApp) {
     return (
-      <div className="ios-app-shell bg-[#F2F2F7] app-safe-top app-safe-bottom relative">
+      <div data-testid="native-app-shell" className="ios-app-shell bg-white app-safe-top app-safe-bottom relative">
         <AnimatedOutlet />
       </div>
     );
@@ -80,6 +82,8 @@ function App() {
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/general" element={<General />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/account" element={<AppleAccount />} />
+                <Route path="/account/:section" element={<AppleAccountDetail />} />
                 <Route path="/settings/:section/*" element={<SettingsDetail />} />
                 <Route path="/general/:section/*" element={<SettingsDetail />} />
                 <Route path="/wifi" element={<Wifi />} />

@@ -1,9 +1,14 @@
-"""Local-only SPA server for functional tests, not a production deployment."""
+"""Local-only SPA server for functional tests, not production hosting."""
+import argparse
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import os
 
-ROOT = Path(__file__).resolve().parents[1] / "frontend" / "build"
+parser = argparse.ArgumentParser()
+parser.add_argument("--port", type=int, default=4173)
+parser.add_argument("--root", default="frontend/build")
+args = parser.parse_args()
+ROOT = (Path(__file__).resolve().parents[1] / args.root).resolve()
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -15,5 +20,5 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 os.chdir(ROOT)
-print("Server uji lokal: http://127.0.0.1:4173", flush=True)
-ThreadingHTTPServer(("127.0.0.1", 4173), Handler).serve_forever()
+print(f"Server uji lokal: http://127.0.0.1:{args.port} ({ROOT})", flush=True)
+ThreadingHTTPServer(("127.0.0.1", args.port), Handler).serve_forever()

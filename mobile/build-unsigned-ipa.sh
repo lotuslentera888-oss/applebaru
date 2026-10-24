@@ -28,6 +28,8 @@ if [ ! -f "$WRAPPER/www/index.html" ]; then
   echo "The prebuilt local web bundle is missing." >&2
   exit 1
 fi
+python3 "$ROOT/scripts/bundle-manifest.py" "$MODE" --check
+swift "$ROOT/scripts/export-sf-symbols.swift" "$WRAPPER/www/icons/sf"
 mkdir -p "$BUILD"
 (
   cd "$WRAPPER"

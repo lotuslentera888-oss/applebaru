@@ -25,9 +25,11 @@ case "$BACKEND_URL" in
 esac
 BACKEND_URL="${BACKEND_URL%/}"
 echo "==> Building $MODE with backend: $BACKEND_URL"
+SOURCE_HASH="$(python3 "$ROOT/scripts/bundle-manifest.py" --source-hash)"
 REACT_APP_CAP_APP="$MODE" REACT_APP_BACKEND_URL="$BACKEND_URL" GENERATE_SOURCEMAP=false yarn build
 DEST="$ROOT/mobile/$MODE/www"
 rm -rf "$DEST"
 mkdir -p "$DEST"
 cp -R build/. "$DEST/"
+python3 "$ROOT/scripts/bundle-manifest.py" "$MODE" --write --expected-source-hash "$SOURCE_HASH" --backend "$BACKEND_URL"
 echo "==> Bundle copied. Next: ./mobile/ios-setup.sh $MODE; then Run from Xcode."

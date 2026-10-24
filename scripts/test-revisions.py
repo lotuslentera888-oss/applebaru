@@ -1,8 +1,10 @@
 """Functional regression checks against local production build. No real backend calls."""
 import json
+import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
+BASE_URL = os.getenv("REVISION_TEST_BASE_URL", "http://127.0.0.1:4173")
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "test_reports" / "revisi-ios26"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -33,7 +35,7 @@ with sync_playwright() as p:
             route.abort()
 
     page.route("https://**/*", mock)
-    page.goto("http://127.0.0.1:4173/settings")
+    page.goto(BASE_URL + "/settings")
     page.get_by_test_id("settings-home").wait_for()
     assert "Telkomsel" not in page.get_by_test_id("row-wifi").inner_text()
     assert page.get_by_test_id("row-wifi").inner_text().strip() == "Wi-Fi"
@@ -68,7 +70,7 @@ with sync_playwright() as p:
     assert page.get_by_test_id("pref-settings.display.trueTone").get_attribute("aria-checked") != before
     passed("Search nyata dan kontrol detail persisten")
 
-    page.goto("http://127.0.0.1:4173/general")
+    page.goto(BASE_URL + "/general")
     page.get_by_test_id("general-page").wait_for()
     page.get_by_text("Software Update", exact=True).click()
     page.get_by_test_id("settings-detail-software-update").wait_for()
@@ -81,7 +83,7 @@ with sync_playwright() as p:
     assert page.get_by_test_id("about-serial").inner_text().endswith("SERIAL_HIDDEN_TEST")
     passed("Serial Number tetap tersedia pada About")
 
-    page.goto("http://127.0.0.1:4173/bluetooth")
+    page.goto(BASE_URL + "/bluetooth")
     page.get_by_test_id("bluetooth-page").wait_for()
     page.get_by_test_id("bt-other-JBL Flip 6").click()
     assert page.get_by_test_id("bt-other-JBL Flip 6").locator("svg").count() == 1
@@ -91,11 +93,10 @@ with sync_playwright() as p:
     assert page.get_by_test_id("bluetooth-toggle").get_attribute("aria-checked") == "false"
     passed("Bluetooth pairing dan toggle simulasi persisten")
 
-    page.goto("http://127.0.0.1:4173/phone")
+    page.goto(BASE_URL + "/phone")
     page.get_by_test_id("phone-dialer").wait_for()
     for key in ["star", "hash", "0", "6", "hash"]:
         page.get_by_test_id("key-" + key).click()
-    page.get_by_test_id("phone-call").click()
     sheet = page.get_by_test_id("imei-info-sheet")
     sheet.wait_for()
     assert "Serial Number" not in sheet.inner_text()
@@ -106,20 +107,20 @@ with sync_playwright() as p:
     assert "serial_number" not in (ROOT / "frontend/src/pages/Phone.js").read_text()
     passed("*#06# tanpa serial; IMEI/barcode/QR tetap berfungsi")
 
-    page.goto("http://127.0.0.1:4173/settings")
+    page.goto(BASE_URL + "/settings")
     page.get_by_test_id("settings-home").wait_for()
     icon = page.locator(".ios-icon").first
-    assert round(icon.bounding_box()["width"]) == 34
+    assert round(icon.bounding_box()["width"]) == 32
     image = page.locator('img[src="/icons/settings.png"]').first
     assert image.evaluate("node => node.complete && node.naturalWidth > 0")
     page.screenshot(path=str(OUT / "settings.png"), full_page=False)
-    passed("Ikon menu 34px dan aset Settings termuat")
+    passed("Ikon menu 32px dan aset Settings termuat")
 
     # Every catalogue detail is rendered without touching the real backend.
     routes = json.loads((ROOT / "frontend/public/manus-routes.json").read_text())["routes"]
     details = [route["path"] for route in routes if route["path"].startswith(("/settings/", "/general/"))]
     for route in details:
-        page.goto("http://127.0.0.1:4173" + route)
+        page.goto(BASE_URL + route)
         page.locator('[data-testid^="settings-detail-"]').wait_for()
         assert "Halaman simulasi tidak tersedia" not in page.locator("body").inner_text()
     passed(f"Seluruh {len(details)} route detail katalog dapat dibuka")

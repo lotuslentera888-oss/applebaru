@@ -8,6 +8,7 @@ on:
       - 'mobile/**'
       - '!mobile/**/*.md'
       - '.github/workflows/ios-ipa.yml'
+      - 'scripts/export-sf-symbols.swift'
 
 permissions:
   contents: read
@@ -81,6 +82,15 @@ jobs:
             ${{ runner.temp }}/ipa-output/*.sha256
             ${{ runner.temp }}/ipa-output/*SIGNING-NOTICE.txt
             ${{ runner.temp }}/ipa-output/*executable.txt
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload native SF Symbols
+        if: success() && matrix.app == 'settings'
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-sf-symbols
+          path: mobile/settings/www/icons/sf/*.png
           if-no-files-found: error
           retention-days: 14
 

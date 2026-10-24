@@ -4,6 +4,20 @@
   "webDir": "www",
   "ios": {
     "backgroundColor": "#FFFFFF",
-    "scrollEnabled": true
+    "scrollEnabled": true,
+    "contentInset": "never",
+    "preferredContentMode": "mobile"
+  },
+  "backgroundColor": "#FFFFFF",
+  "plugins": {
+    "StatusBar": {
+      "overlaysWebView": true,
+      "style": "LIGHT",
+      "backgroundColor": "#FFFFFF"
+    },
+    "SplashScreen": {
+      "launchShowDuration": 0,
+      "backgroundColor": "#FFFFFF"
+    }
   }
 }

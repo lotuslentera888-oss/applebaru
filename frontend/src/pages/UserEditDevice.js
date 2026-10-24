@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { NavHeader } from "@/components/ios/Chrome";
 import { IosGroup, IosSectionHeader } from "@/components/ios/IosList";
 import { useDevice } from "@/context/DeviceContext";
@@ -8,6 +8,8 @@ import { toast } from "sonner";
 
 export default function UserEditDevice() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const backPath = location.state?.from === "/account" ? "/account" : "/settings";
   const { device, refreshDevice, saveDevice } = useDevice();
   const [form, setForm] = useState(device || {});
   const [saving, setSaving] = useState(false);
@@ -39,7 +41,7 @@ export default function UserEditDevice() {
 
   return (
     <div className="pb-28" data-testid="edit-device-page">
-      <NavHeader title="Device Info" largeTitle="Device Info" onBack={() => navigate("/settings")} backLabel="Settings" />
+      <NavHeader title="Device Info" onBack={() => navigate(backPath)} backLabel={backPath === "/account" ? "Apple Account" : "Settings"} />
 
       <div className="space-y-5 pt-1">
         {DEVICE_SECTIONS.map((sec) => (

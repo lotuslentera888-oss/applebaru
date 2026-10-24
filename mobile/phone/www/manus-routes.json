@@ -146,6 +146,42 @@
     },
     {
       "path": "/general/shutdown"
+    },
+    {
+      "path": "/account",
+      "title": "Apple Account"
+    },
+    {
+      "path": "/account/personal",
+      "title": "Personal Information"
+    },
+    {
+      "path": "/account/security",
+      "title": "Sign-In & Security"
+    },
+    {
+      "path": "/account/payment",
+      "title": "Payment & Shipping"
+    },
+    {
+      "path": "/account/subscriptions",
+      "title": "Subscriptions"
+    },
+    {
+      "path": "/account/icloud",
+      "title": "iCloud"
+    },
+    {
+      "path": "/account/media",
+      "title": "Media & Purchases"
+    },
+    {
+      "path": "/account/find-my",
+      "title": "Find My"
+    },
+    {
+      "path": "/account/family",
+      "title": "Family"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "app_version": "1.1.0",
+  "app_build": "3",
+  "backend": "https://24simulator.vip",
+  "test_groups": {
+    "baseline": 11,
+    "chromium_client": 9,
+    "webkit_client": 9
+  },
+  "total_checks": 29,
+  "real_backend_accessed": false,
+  "physical_iphone_tested": false,
+  "native_ipa_build": "pending"
+}

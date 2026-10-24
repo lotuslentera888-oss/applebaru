@@ -1,0 +1,16 @@
+{
+  "passed": [
+    "Kartu Settings membuka Apple Account, bukan editor perangkat",
+    "Informasi profil lokal tersimpan tanpa request Apple/backend",
+    "Halaman iCloud dapat diklik; switch simulasi persisten",
+    "Seluruh detail akun terhubung; Device Editor tetap tersedia terpisah",
+    "About kompak, font sistem, latar header putih; tahun tidak pecah pada empat lebar layar",
+    "QR IMEI dapat didekode dan tidak membawa serial",
+    "*#06# terbuka otomatis; tutup dan ulang tidak menyebabkan loop",
+    "Tidak ada error JavaScript atau operasi tulis API selama uji",
+    "Phone tetap membuka lembar hasil ketika data perangkat belum ada"
+  ],
+  "total": 9,
+  "real_backend_accessed": false,
+  "native_iphone_tested": false
+}

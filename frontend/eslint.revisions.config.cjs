@@ -1,6 +1,6 @@
 const hooks = require("eslint-plugin-react-hooks");
 module.exports = [{
-  files: ["src/App.js", "src/components/ios/{Chrome,IosList,Navigation}.js", "src/pages/{Settings,SettingsDetail,General,Wifi,Bluetooth,Phone,Launcher,HomeScreen}.js", "src/lib/{preferences,settingsCatalog}.js"],
+  files: ["src/**/*.js"],
   languageOptions: {
     ecmaVersion: "latest", sourceType: "module",
     parserOptions: { ecmaFeatures: { jsx: true } },
