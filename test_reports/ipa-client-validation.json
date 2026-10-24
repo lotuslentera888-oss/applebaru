@@ -1,0 +1,38 @@
+[
+  {
+    "mode": "settings",
+    "ipa": "Settings-1.1.0-Revisi-Klien-unsigned.ipa",
+    "sha256": "615bc13d75b4468f92a32f3e754345dce0f0995bb6c15c25cd9e00acd36877be",
+    "version": "1.1.0",
+    "build": "3",
+    "platform": "iphoneos",
+    "architecture": "arm64",
+    "backend": "https://24simulator.vip",
+    "native_cellular_glyph_bbox": [
+      7,
+      12,
+      81,
+      80
+    ],
+    "signing": "unsigned",
+    "physical_iphone_tested": false
+  },
+  {
+    "mode": "phone",
+    "ipa": "Phone-1.1.0-Revisi-Klien-unsigned.ipa",
+    "sha256": "08e879b271a233d1d63ba49569557348d71ae2af082eb876e1344c729d51524a",
+    "version": "1.1.0",
+    "build": "3",
+    "platform": "iphoneos",
+    "architecture": "arm64",
+    "backend": "https://24simulator.vip",
+    "native_cellular_glyph_bbox": [
+      7,
+      12,
+      81,
+      80
+    ],
+    "signing": "unsigned",
+    "physical_iphone_tested": false
+  }
+]

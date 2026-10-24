@@ -18,4 +18,6 @@ IPA dibuild untuk **iPhone arm64**, bukan simulator, tanpa sertifikat atau provi
 
 Tidak ada iPhone fisik yang tersedia pada lingkungan pengerjaan. Karena itu **100% identik dengan Settings asli atau seluruh perilaku di iPhone klien belum dapat dijamin**. Setelah signing, pastikan versi terpasang 1.1.0 (3), lalu bandingkan area atas/Dynamic Island, ikon native, kartu akun, About, gesture back, dan hasil kode dengan video acuan.
 
-Build GitHub untuk revisi ini akan dicatat setelah kompilasi berhasil.
+Build GitHub untuk kedua aplikasi berhasil: [run 40072657378](https://github.com/lotuslentera888-oss/applebaru/actions/runs/40072657378), dari commit `a78dabb45cc208f01bf94afdd3b0e929ce84f92e`.
+
+IPA unduhan terverifikasi checksum SHA-256, bundle ID, versi 1.1.0 (3), platform iphoneos, executable Mach-O arm64, backend 24simulator.vip, metadata fingerprint, serta glyph Cellular 88×88 transparan yang berukuran benar dan terpusat. Tidak ada provisioning profile; kedua IPA tetap unsigned. Ikon SF yang diekspor pada runner disalin kembali ke source agar build lokal berikutnya konsisten.

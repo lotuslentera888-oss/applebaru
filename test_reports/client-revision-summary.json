@@ -10,5 +10,9 @@
   "total_checks": 29,
   "real_backend_accessed": false,
   "physical_iphone_tested": false,
-  "native_ipa_build": "pending"
+  "native_ipa_build": "success",
+  "github_run": "https://github.com/lotuslentera888-oss/applebaru/actions/runs/40072657378",
+  "build_source_commit": "a78dabb45cc208f01bf94afdd3b0e929ce84f92e",
+  "native_symbols_exported": 25,
+  "targeted_date_recheck": "passed: Chromium and WebKit, widths 320/375/390/430"
 }

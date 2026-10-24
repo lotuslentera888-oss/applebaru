@@ -2,11 +2,13 @@
 
 Proyek React + FastAPI + MongoDB ini dikemas menjadi dua aplikasi iPhone berbasis Capacitor: **Settings** dan **Phone**. Paket ini bukan APK Android dan bukan IPA signed. Kode backend serta alur login/editor asli dipertahankan; tidak ada deployment layanan baru.
 
+Versi terbaru **1.1.0 (3)** mengikuti komplain video klien. [Kedua IPA berhasil dibuild di GitHub](https://github.com/lotuslentera888-oss/applebaru/actions/runs/40072657378); file unsigned perlu signing sebelum instalasi. Rincian dan hasil pengujian tersedia di [catatan revisi klien](mobile/REVISI_KLIEN_1.1.0.md).
+
 ## Revisi
 
-Ikon Settings memakai simbol roda gigi yang mengacu pada varian iOS 26. Ikon menu diperbesar menjadi 34 px, kelompok menu memakai sudut lebih bulat, dan tombol kembali tampil sebagai kontrol kaca dengan transisi slide. Gesture dari tepi kiri memicu navigasi kembali. Reduced motion mengikuti preferensi sistem/browser.
+Ikon Settings memakai varian putih/perak terang berdasarkan pembanding klien. Ikon menu 32 px menampilkan glyph SF Symbols asli dari SDK Apple bila tersedia. Status bar memakai teks gelap di atas latar native putih dengan safe-area satu kali. About/detail memakai judul kompak dan tanggal tidak memisahkan tahun sendiri. Kartu akun membuka Apple Account/iCloud-style dengan kontrol lokal; editor perangkat tetap tersedia terpisah. Gesture dari tepi kiri memicu navigasi kembali. Reduced motion mengikuti preferensi sistem/browser.
 
-Serial Number di hasil `*#06#` dihapus, termasuk dari payload QR. Serial pada About dan editor perangkat tetap tersedia. Nama Wi-Fi Telkomsel yang sebelumnya hardcoded dihapus; kondisi awal tidak terhubung. Pilihan Wi-Fi/Bluetooth, toggle, selection, dan slider merupakan simulasi tersimpan lokal per akun. Menu Settings dan General yang sebelumnya toast kini mempunyai halaman detail.
+Hasil `*#06#` kini muncul otomatis setelah kode lengkap; Serial Number dihapus, termasuk dari payload QR. Serial pada About dan editor perangkat tetap tersedia. Nama Wi-Fi Telkomsel yang sebelumnya hardcoded dihapus; kondisi awal tidak terhubung. Pilihan Wi-Fi/Bluetooth, toggle, selection, dan slider merupakan simulasi tersimpan lokal per akun. Menu Settings dan General yang sebelumnya toast kini mempunyai halaman detail. Fingerprint sumber/bundel mencegah pengemasan IPA dengan UI lama.
 
 ## Memasang pada iPhone
 
