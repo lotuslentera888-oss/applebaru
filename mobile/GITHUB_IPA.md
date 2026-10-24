@@ -23,3 +23,5 @@ Source publik: https://github.com/lotuslentera888-oss/applebaru
 Run sukses: https://github.com/lotuslentera888-oss/applebaru/actions/runs/39857097030
 
 Commit source: `734a09f1d531c40591654f28fe846f81140f52c5`. Kedua job native selesai sukses. Signing Apple dan uji iPhone fisik tidak dilakukan.
+
+Build domain backend pengguna `https://24simulator.vip` berhasil pada run https://github.com/lotuslentera888-oss/applebaru/actions/runs/40062150628, commit `59a6a76bd473cfeeb3da2c43858937d676e59946`. Kedua IPA baru diperiksa: bundle native iPhone arm64, checksum sesuai artifact, domain baru ada di JavaScript aktif dan URL preview lama tidak ada. File tetap unsigned; login akun serta iPhone fisik belum diuji.

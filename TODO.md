@@ -19,4 +19,4 @@ Aplikasi tetap simulasi, bukan pengganti Pengaturan/Phone sistem iOS. Kontrol lo
 
 ## Domain backend pengguna
 
-- [ ] Backend kedua aplikasi memakai `https://24simulator.vip`, dengan API pada `/api`; URL preview lama dihapus dari konfigurasi dan bundel aktif. Bundel Phone/Settings dibuild ulang, perubahan disimpan di GitHub, dan dua IPA baru diserahkan setelah build native berhasil. Signing serta uji login akun/iPhone fisik tidak termasuk perubahan domain ini.
+- [x] Backend kedua aplikasi memakai `https://24simulator.vip`, dengan API pada `/api`; URL preview lama dihapus dari konfigurasi dan bundel aktif. Bundel Phone/Settings dibuild ulang, perubahan disimpan di GitHub, dan dua IPA baru diserahkan setelah build native berhasil. Signing serta uji login akun/iPhone fisik tidak termasuk perubahan domain ini.
