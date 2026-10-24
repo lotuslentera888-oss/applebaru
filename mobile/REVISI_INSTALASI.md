@@ -8,18 +8,18 @@ Gunakan Mac dengan Xcode dan Node 22+. Dari folder proyek, jalankan `./mobile/io
 
 Pada masing-masing target App, aktifkan **Automatically manage signing**, pilih Team sendiri, dan pilih iPhone fisik yang terhubung. Pertahankan Bundle Identifier lama jika ingin memperbarui aplikasi yang sudah terpasang; perubahan identifier membuat aplikasi baru dengan penyimpanan lokal baru. Jalankan **Run** dari Xcode. Ikuti permintaan Trust dan Developer Mode pada iPhone bila diperlukan.
 
-Backend lama dari arsip dipertahankan: `https://accurate-staging.preview.emergentagent.com`. Ini adalah alamat preview eksternal yang belum dipastikan aktif. Login pertama dan pengambilan data perangkat memerlukan backend HTTPS yang aktif. Jika URL tersebut tidak aktif, ganti dengan backend milikmu, bukan sekadar frontend:
+Backend aplikasi memakai domain pengguna: `https://24simulator.vip`. API client menggunakan `https://24simulator.vip/api`. Login pertama dan pengambilan data perangkat memerlukan backend HTTPS yang aktif. Untuk membuild ulang dengan domain ini:
 
 ```bash
 cd frontend
 yarn install --frozen-lockfile
 cd ..
-./mobile/build-web.sh settings https://backend-milikmu.example
-./mobile/build-web.sh phone https://backend-milikmu.example
+./mobile/build-web.sh settings https://24simulator.vip
+./mobile/build-web.sh phone https://24simulator.vip
 ./mobile/ios-setup.sh
 ```
 
-Jangan gunakan URL contoh secara literal. Backend harus menjalankan API asli dan databasenya. Tidak ada deployment backend baru dalam revisi ini.
+Backend harus menjalankan API asli dan databasenya. Penggantian URL ini tidak menerbitkan atau mengubah layanan backend. Domain HTTPS dan endpoint `/api/auth/me` serta `/api/me/device` dapat diakses saat pengecekan; kedua endpoint dilindungi autentikasi dan merespons 401 tanpa token. Login dengan akun pengguna belum diuji.
 
 ## Agar dapat dipakai satu minggu
 

@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'mobile/**'
+      - '!mobile/**/*.md'
       - '.github/workflows/ios-ipa.yml'
 
 permissions:

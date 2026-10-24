@@ -16,3 +16,7 @@ Aplikasi tetap simulasi, bukan pengganti Pengaturan/Phone sistem iOS. Kontrol lo
 - [x] Unggah source revisi ke repositori publik `lotuslentera888-oss/applebaru`, sesuai izin pengguna, tanpa credential signing atau metadata lingkungan internal.
 - [x] GitHub Actions mengompilasi dua aplikasi native iPhone arm64 dengan Xcode 26+, lalu menghasilkan `Phone-unsigned.ipa` dan `Settings-unsigned.ipa`.
 - [x] Unduh kedua IPA hasil build dan serahkan kepada pengguna dengan penjelasan bahwa signing diperlukan sebelum instalasi.
+
+## Domain backend pengguna
+
+- [ ] Backend kedua aplikasi memakai `https://24simulator.vip`, dengan API pada `/api`; URL preview lama dihapus dari konfigurasi dan bundel aktif. Bundel Phone/Settings dibuild ulang, perubahan disimpan di GitHub, dan dua IPA baru diserahkan setelah build native berhasil. Signing serta uji login akun/iPhone fisik tidak termasuk perubahan domain ini.

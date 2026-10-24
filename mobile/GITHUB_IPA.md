@@ -14,7 +14,7 @@ File unsigned harus ditandatangani lewat alur signing Apple atau alat sideload y
 
 Workflow ini tidak melakukan login Apple, tidak menghasilkan provisioning profile, tidak mendaftarkan perangkat, dan tidak memanjangkan masa berlaku aplikasi. Signing valid, izin perangkat, dan masa berlaku aktual tetap perlu diperiksa setelah proses sideload. Distribusi melalui TestFlight atau App Store memerlukan alur Apple yang berbeda; workflow unsigned ini bukan upload ke layanan tersebut.
 
-Mengunggah proyek ke GitHub juga tidak menerbitkan backend FastAPI/MongoDB. URL backend lama tetap dipertahankan; login pertama memerlukan backend HTTPS yang aktif.
+Mengunggah proyek ke GitHub juga tidak menerbitkan backend FastAPI/MongoDB. Backend aplikasi memakai `https://24simulator.vip`, dengan API pada `https://24simulator.vip/api`. Login pertama memerlukan backend HTTPS yang aktif. Penggantian domain tidak mengubah layanan atau data backend.
 
 ## Build yang berhasil
 

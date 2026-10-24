@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkfrontend||=[]).push([[331],{9331(e,n,h){const s=(0,h(1444).F3)("SplashScreen",{web:()=>h.e(801).then(()=>h(3801)).then(e=>new e.SplashScreenWeb)});h.d(n,["SplashScreen",0,s])}}]);

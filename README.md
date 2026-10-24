@@ -12,7 +12,7 @@ Serial Number di hasil `*#06#` dihapus, termasuk dari payload QR. Serial pada Ab
 
 Panduan utama revisi adalah [mobile/REVISI_INSTALASI.md](mobile/REVISI_INSTALASI.md). Gunakan panduan ini untuk penjelasan masa berlaku tujuh hari dan pemeriksaan tanggal provisioning profile. Panduan lama di `mobile/README.md` dan `mobile/INSTALL_IOS.md` masih disimpan untuk referensi, tetapi ketentuan signing dan ekspor IPA mengikuti panduan revisi serta opsi aktual yang tersedia di Xcode.
 
-Pada Mac dengan Node 22+ dan Xcode, jalankan `./mobile/ios-setup.sh`, lalu buka project masing-masing, pilih Team dan iPhone, dan **Run**. Jika mengganti alamat backend, gunakan `./mobile/build-web.sh settings https://backend-milikmu.example` dan perintah yang sama untuk Phone; URL contoh harus diganti dengan backend HTTPS yang benar-benar aktif.
+Pada Mac dengan Node 22+ dan Xcode, jalankan `./mobile/ios-setup.sh`, lalu buka project masing-masing, pilih Team dan iPhone, dan **Run**. Backend aplikasi adalah `https://24simulator.vip`, dengan API pada `/api`. Untuk build web ulang, gunakan `./mobile/build-web.sh settings https://24simulator.vip` dan perintah yang sama untuk Phone.
 
 ## Struktur
 
