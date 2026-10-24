@@ -1,8 +1,8 @@
 {
   "app_mode": "phone",
   "backend": "https://24simulator.vip",
-  "app_version": "1.1.0",
-  "app_build": "3",
-  "frontend_source_sha256": "350448c430a83b015549dc29ad2471d1dc562a0d849acd41412335702bc46c0c",
-  "web_bundle_sha256": "050b38b5d309ac13da5333f1da08a4c1970f7d1ba668a842ffe0e55a0e4c4660"
+  "app_version": "1.2.0",
+  "app_build": "4",
+  "frontend_source_sha256": "4d95045011baafdc707429a9b2e5b3223726c47737caa436000fda5d3298fd32",
+  "web_bundle_sha256": "903e5ce89996667f1af2a97becceeead14e446f48bca21cd6a8d29b52798a9f1"
 }

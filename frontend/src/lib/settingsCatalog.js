@@ -8,7 +8,23 @@ export const settingsGroups = [
       { key: "bluetooth", label: "Bluetooth", icon: "bluetooth", color: "#0A84FF", summaryKey: "connectivity.bluetooth.enabled" },
       { key: "cellular", label: "Cellular", icon: "antenna", color: "#34C759", controls: [{ type: "select", key: "voice", label: "Voice & Data", defaultValue: "5G Auto", options: ["5G Auto", "5G On", "LTE"] }, { type: "toggle", key: "data", label: "Cellular Data", defaultValue: true }] },
       { key: "hotspot", label: "Personal Hotspot", icon: "link", color: "#34C759", controls: [{ type: "toggle", key: "enabled", label: "Allow Others to Join", defaultValue: false }, { type: "select", key: "compatibility", label: "Maximize Compatibility", defaultValue: "Off", options: ["Off", "On"] }] },
-      { key: "vpn", label: "VPN", icon: "shield", color: "#5856D6", controls: [{ type: "toggle", key: "connected", label: "VPN", defaultValue: false }, { type: "info", label: "No VPN configuration is installed in this simulator." }] },
+      { key: "battery", label: "Battery", icon: "battery", color: "#34C759", controls: [{ type: "toggle", key: "percentage", label: "Battery Percentage", defaultValue: true }, { type: "toggle", key: "optimized", label: "Optimized Battery Charging", defaultValue: true }] },
+    ],
+  },
+  {
+    id: "appearance",
+    items: [
+      { key: "general", label: "General", icon: "general", color: "#8E8E93", route: "/general" },
+      { key: "accessibility", label: "Accessibility", icon: "accessibility", color: "#007AFF", controls: [{ type: "toggle", key: "voiceOver", label: "VoiceOver", defaultValue: false }, { type: "toggle", key: "zoom", label: "Zoom", defaultValue: false }, { type: "toggle", key: "motion", label: "Reduce Motion", defaultValue: false }, { type: "select", key: "text", label: "Display Text Size", defaultValue: "Default", options: ["Default", "Larger", "Largest"] }] },
+      { key: "action-button", label: "Action Button", icon: "action-button", color: "#007AFF", controls: [{ type: "select", key: "action", label: "Press and Hold", defaultValue: "Silent Mode", options: ["Silent Mode", "Focus", "Camera", "Flashlight", "Voice Memo", "No Action"] }] },
+      { key: "apple-intelligence", label: "Apple Intelligence & Siri", icon: "apple-intelligence", color: "#AF52DE", controls: [{ type: "toggle", key: "intelligence", label: "Apple Intelligence", defaultValue: false }, { type: "toggle", key: "listen", label: "Listen for Hey Siri", defaultValue: false }], note: "Simulasi UI lokal; tidak terhubung ke layanan Apple." },
+      { key: "camera", label: "Camera", icon: "camera", color: "#8E8E93", controls: [{ type: "toggle", key: "grid", label: "Grid", defaultValue: false }, { type: "toggle", key: "scan", label: "Scan QR Codes", defaultValue: true }, { type: "select", key: "format", label: "Camera Capture", defaultValue: "High Efficiency", options: ["High Efficiency", "Most Compatible"] }] },
+      { key: "control-center", label: "Control Center", icon: "circle", color: "#8E8E93", controls: [{ type: "toggle", key: "access", label: "Access Within Apps", defaultValue: true }, { type: "select", key: "layout", label: "Layout", defaultValue: "Connected", options: ["Connected", "Expanded"] }] },
+      { key: "display", label: "Display & Brightness", icon: "sun", color: "#007AFF", controls: [{ type: "select", key: "appearance", label: "Appearance", defaultValue: "Light", options: ["Light", "Dark", "Automatic"] }, { type: "slider", key: "brightness", label: "Brightness", defaultValue: 78, min: 10, max: 100 }, { type: "toggle", key: "trueTone", label: "True Tone", defaultValue: true }] },
+      { key: "home-screen", label: "Home Screen & App Library", icon: "grid", color: "#1E6FFF", controls: [{ type: "select", key: "newApps", label: "Newly Downloaded Apps", defaultValue: "App Library Only", options: ["Add to Home Screen", "App Library Only"] }, { type: "toggle", key: "badges", label: "Show in App Library", defaultValue: true }] },
+      { key: "search", label: "Search", icon: "search", color: "#8E8E93", controls: [{ type: "toggle", key: "suggestions", label: "Show in Search", defaultValue: true }, { type: "select", key: "results", label: "Search Results", defaultValue: "All Apps", options: ["All Apps", "Apps Only", "Off"] }] },
+      { key: "standby", label: "StandBy", icon: "standby", color: "#1C1C1E", controls: [{ type: "toggle", key: "enabled", label: "StandBy", defaultValue: true }, { type: "select", key: "nightMode", label: "Night Mode", defaultValue: "Automatic", options: ["Automatic", "Always On", "Off"] }] },
+      { key: "wallpaper", label: "Wallpaper", icon: "image", color: "#30B0C7", controls: [{ type: "select", key: "lock", label: "Lock Screen", defaultValue: "Colorful Gradient", options: ["Colorful Gradient", "Solar", "Blue Dunes"] }, { type: "select", key: "home", label: "Home Screen", defaultValue: "Colorful Gradient", options: ["Colorful Gradient", "Blurred", "Solid Color"] }] },
     ],
   },
   {
@@ -21,32 +37,36 @@ export const settingsGroups = [
     ],
   },
   {
-    id: "appearance",
-    items: [
-      { key: "general", label: "General", icon: "settings", color: "#8E8E93" },
-      { key: "control-center", label: "Control Center", icon: "sliders", color: "#8E8E93", controls: [{ type: "toggle", key: "access", label: "Access Within Apps", defaultValue: true }, { type: "select", key: "layout", label: "Layout", defaultValue: "Connected", options: ["Connected", "Expanded"] }] },
-      { key: "display", label: "Display & Brightness", icon: "sun", color: "#007AFF", controls: [{ type: "select", key: "appearance", label: "Appearance", defaultValue: "Light", options: ["Light", "Dark", "Automatic"] }, { type: "slider", key: "brightness", label: "Brightness", defaultValue: 78, min: 10, max: 100 }, { type: "toggle", key: "trueTone", label: "True Tone", defaultValue: true }] },
-      { key: "home-screen", label: "Home Screen & App Library", icon: "grid", color: "#1E6FFF", controls: [{ type: "select", key: "newApps", label: "Newly Downloaded Apps", defaultValue: "App Library Only", options: ["Add to Home Screen", "App Library Only"] }, { type: "toggle", key: "badges", label: "Show in App Library", defaultValue: true }] },
-      { key: "wallpaper", label: "Wallpaper", icon: "image", color: "#30B0C7", controls: [{ type: "select", key: "lock", label: "Lock Screen", defaultValue: "Colorful Gradient", options: ["Colorful Gradient", "Solar", "Blue Dunes"] }, { type: "select", key: "home", label: "Home Screen", defaultValue: "Colorful Gradient", options: ["Colorful Gradient", "Blurred", "Solid Color"] }] },
-      { key: "accessibility", label: "Accessibility", icon: "accessibility", color: "#007AFF", controls: [{ type: "toggle", key: "voiceOver", label: "VoiceOver", defaultValue: false }, { type: "toggle", key: "zoom", label: "Zoom", defaultValue: false }, { type: "toggle", key: "motion", label: "Reduce Motion", defaultValue: false }, { type: "select", key: "text", label: "Display Text Size", defaultValue: "Default", options: ["Default", "Larger", "Largest"] }] },
-      { key: "action-button", label: "Action Button", icon: "circle", color: "#8E8E93", controls: [{ type: "select", key: "action", label: "Press and Hold", defaultValue: "Silent Mode", options: ["Silent Mode", "Focus", "Camera", "Flashlight", "Voice Memo", "No Action"] }] },
-    ],
-  },
-  {
     id: "privacy",
     items: [
-      { key: "apple-intelligence", label: "Apple Intelligence & Siri", icon: "sparkles", color: "#AF52DE", controls: [{ type: "toggle", key: "intelligence", label: "Apple Intelligence", defaultValue: false }, { type: "toggle", key: "listen", label: "Listen for Hey Siri", defaultValue: false }], note: "Simulasi UI lokal; tidak terhubung ke layanan Apple." },
-      { key: "camera", label: "Camera", icon: "camera", color: "#8E8E93", controls: [{ type: "toggle", key: "grid", label: "Grid", defaultValue: false }, { type: "toggle", key: "scan", label: "Scan QR Codes", defaultValue: true }, { type: "select", key: "format", label: "Camera Capture", defaultValue: "High Efficiency", options: ["High Efficiency", "Most Compatible"] }] },
       { key: "face-id", label: "Face ID & Passcode", icon: "face", color: "#34C759", controls: [{ type: "toggle", key: "unlock", label: "iPhone Unlock", defaultValue: true }, { type: "toggle", key: "itunes", label: "iTunes & App Store", defaultValue: true }, { type: "action", key: "passcode", label: "Change Passcode", actionLabel: "Simulate" }], note: "Tidak meminta atau memvalidasi Face ID/passcode asli." },
       { key: "emergency-sos", label: "Emergency SOS", icon: "siren", color: "#FF3B30", controls: [{ type: "toggle", key: "callHold", label: "Call with Hold", defaultValue: true }, { type: "toggle", key: "callFive", label: "Call with 5 Presses", defaultValue: true }, { type: "action", key: "demo", label: "Emergency SOS Demo", actionLabel: "Preview" }], note: "Demo tidak menelepon layanan darurat." },
       { key: "privacy", label: "Privacy & Security", icon: "hand", color: "#0A84FF", controls: [{ type: "toggle", key: "tracking", label: "Allow Apps to Request to Track", defaultValue: false }, { type: "select", key: "location", label: "Location Services", defaultValue: "While Using", options: ["Never", "Ask Next Time", "While Using", "Always"] }] },
     ],
   },
   {
-    id: "device",
+    id: "account",
     items: [
-      { key: "battery", label: "Battery", icon: "battery", color: "#34C759", controls: [{ type: "toggle", key: "percentage", label: "Battery Percentage", defaultValue: true }, { type: "toggle", key: "optimized", label: "Optimized Battery Charging", defaultValue: true }] },
-      { key: "apps", label: "Apps", icon: "apps", color: "#0A84FF", controls: [{ type: "select", key: "defaultBrowser", label: "Default Browser App", defaultValue: "Safari (simulasi)", options: ["Safari (simulasi)", "Browser lain (simulasi)"] }, { type: "toggle", key: "updates", label: "Automatic Updates", defaultValue: true }] },
+      { key: "game-center", label: "Game Center", icon: "game-center", color: "#5856D6", controls: [{ type: "toggle", key: "enabled", label: "Game Center", defaultValue: true }, { type: "toggle", key: "friendRequests", label: "Allow Friend Requests", defaultValue: true }] },
+      { key: "icloud", label: "iCloud", icon: "cloud", color: "#007AFF", route: "/account/icloud" },
+      { key: "wallet", label: "Wallet", icon: "wallet", color: "#1C1C1E", controls: [{ type: "toggle", key: "payments", label: "Allow Payments on iPhone", defaultValue: true }, { type: "select", key: "defaultCard", label: "Default Card", defaultValue: "No Card", options: ["No Card", "Demo Card"] }] },
+    ],
+  },
+  {
+    id: "apps",
+    items: [
+      { key: "apps", label: "Apps", icon: "apps", color: "#5856D6", controls: [{ type: "select", key: "defaultBrowser", label: "Default Browser App", defaultValue: "Safari (simulasi)", options: ["Safari (simulasi)", "Browser lain (simulasi)"] }, { type: "toggle", key: "updates", label: "Automatic Updates", defaultValue: true }] },
+    ],
+  },
+];
+
+// These controls are kept out of the primary home-page order, but remain routable and discoverable
+// through findSetting for older links and simulator states.
+export const legacySettingsGroups = [
+  {
+    id: "legacy-apps",
+    items: [
+      { key: "vpn", label: "VPN", icon: "shield", color: "#5856D6", controls: [{ type: "toggle", key: "connected", label: "VPN", defaultValue: false }, { type: "info", label: "No VPN configuration is installed in this simulator." }] },
       { key: "app-store", label: "App Store", icon: "appstore", color: "#0A84FF", controls: [{ type: "toggle", key: "updates", label: "App Updates", defaultValue: true }, { type: "toggle", key: "downloads", label: "Automatic Downloads", defaultValue: false }] },
       { key: "passwords", label: "Passwords", icon: "key", color: "#8E8E93", controls: [{ type: "toggle", key: "autofill", label: "AutoFill Passwords", defaultValue: true }, { type: "info", label: "No real credentials are stored by this simulator." }] },
       { key: "music", label: "Music", icon: "music", color: "#FA2D48", controls: [{ type: "toggle", key: "cellular", label: "Cellular Data", defaultValue: false }, { type: "select", key: "quality", label: "Audio Quality", defaultValue: "High Quality", options: ["High Quality", "Lossless (simulasi)"] }] },
@@ -76,7 +96,8 @@ export const generalGroups = [
 ];
 
 export const flattenSettings = (groups) => groups.flatMap((group) => group.items);
-export const settingsCatalog = flattenSettings(settingsGroups);
+export const settingsCatalog = [...flattenSettings(settingsGroups), ...flattenSettings(legacySettingsGroups)];
+export const legacySettingsCatalog = flattenSettings(legacySettingsGroups);
 export const generalCatalog = flattenSettings(generalGroups);
 export function findSetting(key, general = false) {
   return (general ? generalCatalog : settingsCatalog).find((item) => item.key === key);

@@ -34,6 +34,10 @@ private enum ExportError: LocalizedError {
 }
 
 private let symbols: [SymbolEntry] = [
+    SymbolEntry(key: "action-button", symbolName: "button.programmable", required: false),
+    SymbolEntry(key: "general", symbolName: "gearshape", required: true),
+    SymbolEntry(key: "search", symbolName: "magnifyingglass", required: false),
+    SymbolEntry(key: "standby", symbolName: "clock.fill", required: false),
     SymbolEntry(key: "plane", symbolName: "airplane", required: false),
     SymbolEntry(key: "wifi", symbolName: "wifi", required: false),
     SymbolEntry(key: "antenna", symbolName: "antenna.radiowaves.left.and.right", required: true),

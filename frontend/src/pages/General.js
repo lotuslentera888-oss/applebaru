@@ -6,7 +6,8 @@ import { generalGroups } from "@/lib/settingsCatalog";
 import { Search, X } from "lucide-react";
 
 function SimulatedDialog({ title, onClose }) {
-  return <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 px-8" role="dialog" aria-modal="true"><div className="w-full max-w-[340px] rounded-[18px] bg-white p-5 shadow-2xl"><h2 className="text-[18px] font-semibold">{title}</h2><p className="mt-3 text-[15px] leading-5 text-[#6D6D72]">Ini hanya dialog simulasi. Tidak ada data yang dihapus dan tidak ada perangkat eksternal yang dimatikan.</p><button type="button" onClick={onClose} className="mt-5 w-full rounded-[12px] bg-[#007AFF] py-2.5 text-[16px] font-semibold text-white">Mengerti</button></div></div>;
+  const titleId = React.useId();
+  return <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 px-8" role="dialog" aria-modal="true" aria-labelledby={titleId}><div className="w-full max-w-[340px] rounded-[18px] bg-white p-5 shadow-2xl"><h2 id={titleId} className="text-[18px] font-semibold">{title}</h2><p className="mt-3 text-[15px] leading-5 text-[#6D6D72]">Ini hanya dialog simulasi. Tidak ada data yang dihapus dan tidak ada perangkat eksternal yang dimatikan.</p><button type="button" onClick={onClose} className="mt-5 w-full rounded-[12px] bg-[#007AFF] py-2.5 text-[16px] font-semibold text-white">Mengerti</button></div></div>;
 }
 
 export default function General() {

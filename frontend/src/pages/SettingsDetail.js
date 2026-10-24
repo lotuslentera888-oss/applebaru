@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { NavHeader } from "@/components/ios/Chrome";
-import { IosGroup, IosInfoRow, IosSectionFooter } from "@/components/ios/IosList";
+import { IosGroup, IosRow, IosInfoRow, IosSectionFooter } from "@/components/ios/IosList";
 import { useDevice } from "@/context/DeviceContext";
 import { usePreference } from "@/lib/preferences";
-import { findSetting } from "@/lib/settingsCatalog";
+import AppearancePicker from "@/components/ios/AppearancePicker";
+import { findSetting, legacySettingsCatalog } from "@/lib/settingsCatalog";
 import { Check, ChevronRight, Info, ShieldCheck } from "lucide-react";
 
 function Toggle({ value, onChange, testId }) {
@@ -15,18 +16,19 @@ function Toggle({ value, onChange, testId }) {
       aria-checked={Boolean(value)}
       data-testid={testId}
       onClick={() => onChange(!value)}
-      className={`w-[51px] h-[31px] rounded-full relative transition-colors shrink-0 ${value ? "bg-[#34C759]" : "bg-[#E9E9EA]"}`}
+      className={`ios-toggle w-[51px] h-[31px] rounded-full relative transition-colors shrink-0 ${value ? "bg-[#34C759]" : "bg-[#E9E9EA]"}`}
     >
-      <span className={`absolute top-[2px] w-[27px] h-[27px] bg-white rounded-full shadow transition-all ${value ? "left-[22px]" : "left-[2px]"}`} />
+      <span className={`ios-toggle-knob absolute top-[2px] w-[27px] h-[27px] bg-white rounded-full shadow transition-all ${value ? "left-[22px]" : "left-[2px]"}`} />
     </button>
   );
 }
 
 function SimulatedDialog({ title, note, onClose }) {
+  const titleId = React.useId();
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 px-8" role="dialog" aria-modal="true">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 px-8" role="dialog" aria-modal="true" aria-labelledby={titleId}>
       <div className="w-full max-w-[340px] rounded-[18px] bg-white p-5 shadow-2xl">
-        <div className="flex items-center gap-2 text-[18px] font-semibold"><ShieldCheck size={20} className="text-[#007AFF]" />{title}</div>
+        <div id={titleId} className="flex items-center gap-2 text-[18px] font-semibold"><ShieldCheck size={20} className="text-[#007AFF]" />{title}</div>
         <p className="mt-3 text-[15px] leading-5 text-[#6D6D72]">{note || "Perubahan ini hanya tersimpan di simulator dan tidak memanggil layanan perangkat nyata."}</p>
         <button type="button" onClick={onClose} className="mt-5 w-full rounded-[12px] bg-[#007AFF] py-2.5 text-[16px] font-semibold text-white">Mengerti</button>
       </div>
@@ -37,6 +39,7 @@ function SimulatedDialog({ title, note, onClose }) {
 function PreferenceControl({ settingKey, control, onAction }) {
   const prefKey = `${settingKey}.${control.key || "info"}`;
   const [value, setValue] = usePreference(prefKey, control.defaultValue);
+  if (settingKey === "settings.display" && control.key === "appearance") return <AppearancePicker value={value} onChange={setValue} />;
   if (control.type === "info") {
     return <div className="flex items-start gap-2 px-4 py-3 text-[14px] leading-5 text-[#6D6D72]"><Info size={17} className="mt-0.5 shrink-0 text-[#8E8E93]" />{control.label}</div>;
   }
@@ -103,6 +106,8 @@ export default function SettingsDetail() {
       {setting.key === "software-update" && <IosGroup><IosInfoRow label="iOS Version" value={device?.ios_version || "—"} /><IosInfoRow label="Build" value={device?.build_version || "—"} /></IosGroup>}
       {setting.key === "battery" && <IosGroup><IosInfoRow label="Maximum Capacity" value={device?.battery_max_capacity || "—"} /><IosInfoRow label="Cycle Count" value={device?.battery_charge_cycles ?? "—"} /></IosGroup>}
       {hasControls ? <IosGroup>{setting.controls.map((control) => <PreferenceControl key={`${setting.key}-${control.key || control.label}`} settingKey={`${isGeneral ? "general" : "settings"}.${setting.key}`} control={control} onAction={setDialog} />)}</IosGroup> : <IosGroup><IosInfoRow label="Status" value="Tersedia di simulator" /><IosInfoRow label="Scope" value="Lokal akun ini" /></IosGroup>}
+      {setting.key === "apps" && <IosGroup>{legacySettingsCatalog.filter((item) => item.key !== "vpn").map((item) => <IosRow key={item.key} label={item.label} onClick={() => navigate(`/settings/${item.key}`)} />)}</IosGroup>}
+      {setting.key === "vpn-management" && <IosGroup><IosRow label="VPN" onClick={() => navigate("/settings/vpn")} /></IosGroup>}
       {setting.note && <IosSectionFooter>{setting.note}</IosSectionFooter>}
       <IosSectionFooter><span className="inline-flex items-center gap-1"><Check size={14} /> Perubahan disimpan lokal dan tidak mengubah iOS nyata.</span></IosSectionFooter>
     </div>

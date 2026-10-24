@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { NavHeader } from "@/components/ios/Chrome";
 import { IosGroup, IosIcon, IosInfoRow, IosRow, IosSectionFooter } from "@/components/ios/IosList";
 import { useAuth } from "@/context/AuthContext";
@@ -41,9 +41,10 @@ function Toggle({ value, onChange, testId, label }) {
       aria-checked={Boolean(value)}
       data-testid={testId}
       onClick={() => onChange(!value)}
-      className={`relative h-[31px] w-[51px] shrink-0 rounded-full transition-colors ${value ? "bg-[#34C759]" : "bg-[#E9E9EA]"}`}
+      className="ios-toggle relative h-[31px] w-[51px] shrink-0 rounded-full transition-colors"
+      style={{ backgroundColor: value ? "#34C759" : "var(--ios-toggle-off)" }}
     >
-      <span className={`absolute top-[2px] h-[27px] w-[27px] rounded-full bg-white shadow transition-all ${value ? "left-[22px]" : "left-[2px]"}`} />
+      <span className={`ios-toggle-knob absolute top-[2px] h-[27px] w-[27px] rounded-full shadow transition-all ${value ? "left-[22px]" : "left-[2px]"}`} />
     </button>
   );
 }
@@ -66,8 +67,8 @@ function SwitchRow({ label, value, onChange, testId, icon, color = "#8E8E93" }) 
 
 function EditableRow({ label, value, onChange, type = "text", testId, placeholder }) {
   return (
-    <label className="flex min-h-[50px] items-center gap-4 bg-white px-4 py-2">
-      <span className="shrink-0 text-[17px] leading-[22px] text-black">{label}</span>
+    <label className="flex min-h-[50px] items-center gap-4 px-4 py-2" style={{ backgroundColor: "var(--ios-surface)" }}>
+      <span className="shrink-0 text-[17px] leading-[22px]" style={{ color: "var(--ios-label)" }}>{label}</span>
       <input
         type={type}
         value={value}
@@ -211,10 +212,12 @@ function FamilyDetail({ family, setFamily }) {
 }
 
 export default function AppleAccountDetail() {
+  const routeLocation = useLocation();
   const navigate = useNavigate();
   const { section = "" } = useParams();
   const { auth } = useAuth();
   const meta = DETAIL_META[section];
+  const backPath = routeLocation.state?.from === "/settings" ? "/settings" : "/account";
 
   const [displayName, setDisplayName] = usePreference("account.displayName", auth?.username || "Apple Account");
   const [email, setEmail] = usePreference("account.email", auth?.email || "");
@@ -234,8 +237,8 @@ export default function AppleAccountDetail() {
   if (!meta) {
     return (
       <div className="pb-10" data-testid="apple-account-detail-unavailable">
-        <NavHeader title="Apple Account" onBack={() => navigate("/account")} backLabel="Apple Account" />
-        <div className="px-8 pt-10 text-center text-[15px] leading-5 text-[#6D6D72]">This account section is not available.</div>
+        <NavHeader title="Apple Account" onBack={() => navigate(backPath)} backLabel={backPath === "/settings" ? "Settings" : "Apple Account"} />
+        <div className="px-8 pt-10 text-center text-[15px] leading-5" style={{ color: "var(--ios-secondary)" }}>This account section is not available.</div>
       </div>
     );
   }
@@ -253,7 +256,7 @@ export default function AppleAccountDetail() {
 
   return (
     <div className="pb-10" data-testid={`apple-account-detail-${section}`}>
-      <NavHeader title={meta.title} onBack={() => navigate("/account")} backLabel="Apple Account" />
+      <NavHeader title={meta.title} onBack={() => navigate(backPath)} backLabel={backPath === "/settings" ? "Settings" : "Apple Account"} />
       <div className="space-y-6 pt-1">
         <IosGroup>
           <IosRow icon={<SectionIcon meta={meta} />} label={meta.title} value="Local settings" chevron={false} testId="account-detail-heading" />

@@ -1,9 +1,12 @@
-import React, { createContext, useContext, useRef } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigationType, useNavigate, useOutlet } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 const BackContext = createContext((callback) => callback());
+const NavigationStateContext = createContext({ scrollTop: 0, searchPortal: null });
 export const useIosBack = () => useContext(BackContext);
+export const useIosNavigationState = () => useContext(NavigationStateContext);
+export const useIosSearchPortal = () => useContext(NavigationStateContext).searchPortal;
 
 function parentPath(path) {
   if (["/general", "/wifi", "/bluetooth", "/edit"].includes(path)) return "/settings";
@@ -32,6 +35,31 @@ export default function AnimatedOutlet() {
   const positions = useRef(new Map());
   const viewport = useRef(null);
   const gesture = useRef(null);
+  const [scrollTop, setScrollTop] = useState(0);
+  const [searchPortal, setSearchPortal] = useState(null);
+
+  useEffect(() => {
+    const visual = window.visualViewport;
+    const update = () => {
+      const node = viewport.current;
+      if (!node) return;
+      const bounds = node.getBoundingClientRect();
+      const visibleBottom = visual ? visual.height + visual.offsetTop : window.innerHeight;
+      const occluded = Math.max(0, bounds.bottom - visibleBottom);
+      const visibleHeight = Math.max(0, Math.min(bounds.height, visibleBottom - bounds.top));
+      node.style.setProperty("--ios-keyboard-offset", `${occluded}px`);
+      node.style.setProperty("--ios-visible-height", `${visibleHeight}px`);
+    };
+    update();
+    window.addEventListener("resize", update);
+    visual?.addEventListener("resize", update);
+    visual?.addEventListener("scroll", update);
+    return () => {
+      window.removeEventListener("resize", update);
+      visual?.removeEventListener("resize", update);
+      visual?.removeEventListener("scroll", update);
+    };
+  }, []);
 
   if (previousKey.current !== location.key) {
     currentDirection.current = navigationType === "POP" ? -1 : nextDirection.current;
@@ -43,8 +71,12 @@ export default function AnimatedOutlet() {
     nextDirection.current = -1;
     callback();
   };
-  const accountOrigin = ["/about", "/edit"].includes(location.pathname) && location.state?.from === "/account";
-  const fallback = accountOrigin ? "/account" : parentPath(location.pathname);
+  const originBack = ["/about", "/edit"].includes(location.pathname) && location.state?.from === "/account"
+    ? "/account"
+    : location.pathname.startsWith("/account/") && location.state?.from === "/settings"
+      ? "/settings"
+      : null;
+  const fallback = originBack || parentPath(location.pathname);
   const variants = {
     enter: (d) => ({ x: reducedMotion ? 0 : d > 0 ? "100%" : "-28%", opacity: 1 }),
     active: { x: 0, opacity: 1 },
@@ -70,22 +102,40 @@ export default function AnimatedOutlet() {
       back(() => navigate(fallback));
     }
   };
+  const setViewport = useCallback((node) => {
+    viewport.current = node;
+    setSearchPortal(node);
+  }, []);
+  const onPageScroll = (event) => {
+    const nextScrollTop = event.currentTarget.scrollTop;
+    positions.current.set(location.pathname, nextScrollTop);
+    setScrollTop(nextScrollTop);
+  };
+  const restorePage = useCallback((node) => {
+    if (!node) return;
+    const saved = positions.current.get(location.pathname) || 0;
+    node.scrollTop = saved;
+    setScrollTop(saved);
+  }, [location.pathname]);
+
   return (
     <BackContext.Provider value={back}>
-      <div ref={viewport} className="ios-navigation-viewport" data-testid="ios-navigation"
-        onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
-        onTouchCancel={() => { gesture.current = null; }}>
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div key={location.key} custom={direction} variants={variants}
-            initial="enter" animate="active" exit="leave"
-            transition={{ duration: reducedMotion ? 0 : 0.34, ease: [0.32, 0.72, 0, 1] }}
-            className="ios-navigation-page" data-navigation-direction={direction < 0 ? "back" : "forward"}
-            ref={(node) => { if (node) node.scrollTop = positions.current.get(location.pathname) || 0; }}
-            onScroll={(event) => positions.current.set(location.pathname, event.currentTarget.scrollTop)}>
-            {outlet}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      <NavigationStateContext.Provider value={{ scrollTop, searchPortal }}>
+        <div ref={setViewport} className="ios-navigation-viewport" data-testid="ios-navigation"
+          onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
+          onTouchCancel={() => { gesture.current = null; }}>
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div key={location.key} custom={direction} variants={variants}
+              initial="enter" animate="active" exit="leave"
+              transition={{ duration: reducedMotion ? 0 : 0.34, ease: [0.32, 0.72, 0, 1] }}
+              className="ios-navigation-page" data-navigation-direction={direction < 0 ? "back" : "forward"}
+              ref={restorePage}
+              onScroll={onPageScroll}>
+              {outlet}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </NavigationStateContext.Provider>
     </BackContext.Provider>
   );
 }

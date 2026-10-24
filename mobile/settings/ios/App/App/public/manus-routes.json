@@ -31,157 +31,208 @@
       "path": "/admin"
     },
     {
-      "path": "/settings/cellular"
+      "path": "/account"
     },
     {
-      "path": "/settings/hotspot"
+      "path": "/settings/airplane",
+      "title": "Airplane Mode"
     },
     {
-      "path": "/settings/vpn"
+      "path": "/settings/cellular",
+      "title": "Cellular"
     },
     {
-      "path": "/settings/notifications"
+      "path": "/settings/hotspot",
+      "title": "Personal Hotspot"
     },
     {
-      "path": "/settings/sounds"
+      "path": "/settings/battery",
+      "title": "Battery"
     },
     {
-      "path": "/settings/focus"
+      "path": "/settings/accessibility",
+      "title": "Accessibility"
     },
     {
-      "path": "/settings/screen-time"
+      "path": "/settings/action-button",
+      "title": "Action Button"
     },
     {
-      "path": "/settings/control-center"
+      "path": "/settings/apple-intelligence",
+      "title": "Apple Intelligence & Siri"
     },
     {
-      "path": "/settings/display"
+      "path": "/settings/camera",
+      "title": "Camera"
     },
     {
-      "path": "/settings/home-screen"
+      "path": "/settings/control-center",
+      "title": "Control Center"
     },
     {
-      "path": "/settings/wallpaper"
+      "path": "/settings/display",
+      "title": "Display & Brightness"
     },
     {
-      "path": "/settings/accessibility"
+      "path": "/settings/home-screen",
+      "title": "Home Screen & App Library"
     },
     {
-      "path": "/settings/action-button"
+      "path": "/settings/search",
+      "title": "Search"
     },
     {
-      "path": "/settings/apple-intelligence"
+      "path": "/settings/standby",
+      "title": "StandBy"
     },
     {
-      "path": "/settings/camera"
+      "path": "/settings/wallpaper",
+      "title": "Wallpaper"
     },
     {
-      "path": "/settings/face-id"
+      "path": "/settings/notifications",
+      "title": "Notifications"
     },
     {
-      "path": "/settings/emergency-sos"
+      "path": "/settings/sounds",
+      "title": "Sounds & Haptics"
     },
     {
-      "path": "/settings/privacy"
+      "path": "/settings/focus",
+      "title": "Focus"
     },
     {
-      "path": "/settings/battery"
+      "path": "/settings/screen-time",
+      "title": "Screen Time"
     },
     {
-      "path": "/settings/apps"
+      "path": "/settings/face-id",
+      "title": "Face ID & Passcode"
     },
     {
-      "path": "/settings/app-store"
+      "path": "/settings/emergency-sos",
+      "title": "Emergency SOS"
     },
     {
-      "path": "/settings/passwords"
+      "path": "/settings/privacy",
+      "title": "Privacy & Security"
     },
     {
-      "path": "/settings/music"
-    },
-    {
-      "path": "/general/software-update"
-    },
-    {
-      "path": "/general/airdrop"
-    },
-    {
-      "path": "/general/airplay"
-    },
-    {
-      "path": "/general/picture"
-    },
-    {
-      "path": "/general/carplay"
-    },
-    {
-      "path": "/general/storage"
-    },
-    {
-      "path": "/general/background-refresh"
-    },
-    {
-      "path": "/general/date-time"
-    },
-    {
-      "path": "/general/keyboard"
-    },
-    {
-      "path": "/general/fonts"
-    },
-    {
-      "path": "/general/language-region"
-    },
-    {
-      "path": "/general/dictionary"
-    },
-    {
-      "path": "/general/vpn-management"
-    },
-    {
-      "path": "/general/legal"
-    },
-    {
-      "path": "/general/transfer-reset"
-    },
-    {
-      "path": "/general/shutdown"
-    },
-    {
-      "path": "/account",
-      "title": "Apple Account"
-    },
-    {
-      "path": "/account/personal",
-      "title": "Personal Information"
-    },
-    {
-      "path": "/account/security",
-      "title": "Sign-In & Security"
-    },
-    {
-      "path": "/account/payment",
-      "title": "Payment & Shipping"
-    },
-    {
-      "path": "/account/subscriptions",
-      "title": "Subscriptions"
+      "path": "/settings/game-center",
+      "title": "Game Center"
     },
     {
       "path": "/account/icloud",
       "title": "iCloud"
     },
     {
-      "path": "/account/media",
-      "title": "Media & Purchases"
+      "path": "/settings/wallet",
+      "title": "Wallet"
     },
     {
-      "path": "/account/find-my",
-      "title": "Find My"
+      "path": "/settings/apps",
+      "title": "Apps"
     },
     {
-      "path": "/account/family",
-      "title": "Family"
+      "path": "/settings/vpn",
+      "title": "VPN"
+    },
+    {
+      "path": "/settings/app-store",
+      "title": "App Store"
+    },
+    {
+      "path": "/settings/passwords",
+      "title": "Passwords"
+    },
+    {
+      "path": "/settings/music",
+      "title": "Music"
+    },
+    {
+      "path": "/general/software-update",
+      "title": "Software Update"
+    },
+    {
+      "path": "/general/airdrop",
+      "title": "AirDrop"
+    },
+    {
+      "path": "/general/airplay",
+      "title": "AirPlay & Handoff"
+    },
+    {
+      "path": "/general/picture",
+      "title": "Picture in Picture"
+    },
+    {
+      "path": "/general/carplay",
+      "title": "CarPlay"
+    },
+    {
+      "path": "/general/storage",
+      "title": "iPhone Storage"
+    },
+    {
+      "path": "/general/background-refresh",
+      "title": "Background App Refresh"
+    },
+    {
+      "path": "/general/date-time",
+      "title": "Date & Time"
+    },
+    {
+      "path": "/general/keyboard",
+      "title": "Keyboard"
+    },
+    {
+      "path": "/general/fonts",
+      "title": "Fonts"
+    },
+    {
+      "path": "/general/language-region",
+      "title": "Language & Region"
+    },
+    {
+      "path": "/general/dictionary",
+      "title": "Dictionary"
+    },
+    {
+      "path": "/general/vpn-management",
+      "title": "VPN & Device Management"
+    },
+    {
+      "path": "/general/legal",
+      "title": "Legal & Regulatory"
+    },
+    {
+      "path": "/general/transfer-reset",
+      "title": "Transfer or Reset iPhone"
+    },
+    {
+      "path": "/general/shutdown",
+      "title": "Shut Down"
+    },
+    {
+      "path": "/account/personal"
+    },
+    {
+      "path": "/account/security"
+    },
+    {
+      "path": "/account/payment"
+    },
+    {
+      "path": "/account/subscriptions"
+    },
+    {
+      "path": "/account/media"
+    },
+    {
+      "path": "/account/find-my"
+    },
+    {
+      "path": "/account/family"
     }
   ]
 }

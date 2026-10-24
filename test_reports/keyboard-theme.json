@@ -1,0 +1,34 @@
+{
+  "passed": [
+    {
+      "engine": "webkit",
+      "theme": "Light",
+      "keyboard_viewport_simulated": true,
+      "landscape": true,
+      "dialog_labeled": true
+    },
+    {
+      "engine": "webkit",
+      "theme": "Dark",
+      "keyboard_viewport_simulated": true,
+      "landscape": true,
+      "dialog_labeled": true
+    },
+    {
+      "engine": "chromium",
+      "theme": "Light",
+      "keyboard_viewport_simulated": true,
+      "landscape": true,
+      "dialog_labeled": true
+    },
+    {
+      "engine": "chromium",
+      "theme": "Dark",
+      "keyboard_viewport_simulated": true,
+      "landscape": true,
+      "dialog_labeled": true
+    }
+  ],
+  "physical_keyboard_tested": false,
+  "real_backend_accessed": false
+}

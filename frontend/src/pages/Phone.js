@@ -29,8 +29,8 @@ function Barcode({ value, testId }) {
           displayValue: false,
           height: 46,
           width: 1.5,
-          margin: 0,
-          background: "transparent",
+          margin: 16,
+          background: "#ffffff",
           lineColor: "#000000",
         });
       } catch (e) {
@@ -38,7 +38,7 @@ function Barcode({ value, testId }) {
       }
     }
   }, [value]);
-  return <svg ref={ref} data-testid={testId} className="w-full h-[46px]" />;
+  return <svg ref={ref} data-testid={testId} className="ios-code-scan w-full h-[46px]" style={{ backgroundColor: "#ffffff" }} />;
 }
 
 function QrCode({ value, size = 128 }) {
