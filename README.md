@@ -2,7 +2,7 @@
 
 Proyek React + FastAPI + MongoDB ini dikemas menjadi dua aplikasi iPhone berbasis Capacitor: **Settings** dan **Phone**. Paket ini bukan APK Android dan bukan IPA signed. Kode backend serta alur login/editor asli dipertahankan; tidak ada deployment layanan baru.
 
-Versi terbaru **1.2.0 (4)** mengikuti video komplain lanjutan dan screenshot Settings asli. [Kedua IPA berhasil dibuild di GitHub](https://github.com/lotuslentera888-oss/applebaru/actions/runs/40076730970); file unsigned perlu signing sebelum instalasi. Rincian perubahan, hasil uji Light/Dark dan batas verifikasi tersedia di [catatan revisi klien](mobile/REVISI_KLIEN_1.2.0.md).
+Versi terbaru **1.2.1 (5)** mengikuti video komplain lanjutan dan screenshot Settings asli. [Kedua IPA berhasil dibuild di GitHub](https://github.com/lotuslentera888-oss/applebaru/actions/runs/40077541908); file unsigned perlu signing sebelum instalasi. Koreksi terakhir memakai [file ikon asli pengguna tanpa recolor](mobile/ICON_SOURCE_1.2.1.md). Rincian perubahan, hasil uji Light/Dark dan batas verifikasi tersedia di [catatan revisi klien](mobile/REVISI_KLIEN_1.2.0.md).
 
 ## Revisi
 
