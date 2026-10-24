@@ -17,3 +17,7 @@ Pengujian menggunakan fixture lokal dan API mock, tanpa mengubah data produksi. 
 ## Hasil uji lokal
 
 Uji ordering, pilihan Appearance/persistence/Automatic, keterbacaan Dark di Settings/General/About/28 route generic/semua detail akun, legacy links, swipe kembali dari iCloud, QR tanpa serial dan bidang barcode lulus. Recheck final berisi 6 kelompok uji pada masing-masing WebKit dan Chromium, tanpa error JavaScript atau request tulis API. Empat kombinasi engine/tema untuk viewport keyboard, separator, dialog dan landscape juga lulus. Grid responsif 320/375/390/430 pada acceptance sebelumnya lulus; recheck dibatasi pada perubahan yang terdeteksi. Native iPhone fisik belum diuji.
+
+## Build native dan validasi paket
+
+[GitHub Actions run 40076730970](https://github.com/lotuslentera888-oss/applebaru/actions/runs/40076730970) selesai sukses untuk Settings dan Phone. Commit sumber: `1b9e1a5213a65d217af9cd5e0109a4c654d9f468`. Dua file IPA hasil unduhan diperiksa dengan checksum SHA-256, struktur zip, Info.plist versi 1.2.0/build 4, platform iphoneos dan binary ARM64. Plugin SimulatorAppearance terhubung di binary; kunci mode Light permanen tidak ada. Sebelas ikon acuan dan glyph Cellular native terpaket. Backend dalam JS aktif adalah domain pengguna. Tidak ada provisioning profile signing dalam IPA.
